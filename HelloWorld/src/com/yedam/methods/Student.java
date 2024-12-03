@@ -13,7 +13,7 @@ public class Student {
 	private int engScore; // 영어점수
 	private int mathScore; // 수학점수
 
-	// 생성자 
+	// 생성자 => 인스턴스를 생성하면서 필드의 값을 초기화해주는 기능
 	public Student(String studentId) {
 		this.studentId = studentId;
 	}

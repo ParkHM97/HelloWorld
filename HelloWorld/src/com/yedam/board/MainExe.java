@@ -2,6 +2,8 @@ package com.yedam.board;
 
 import java.util.Scanner;
 
+
+
 public class MainExe { // 컨트롤(메인 메소드가 있는 클래스)
 	static Scanner scn = new Scanner(System.in); // 사용자 입력값
 	static BoardExe bexe = new BoardExe();

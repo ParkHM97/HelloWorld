@@ -3,8 +3,14 @@ package com.yedam.board;
  * 회원가입(등록), 회원정보수정(등록된 정보에서 수정), 목록(등록된 데이터 열람)
  */
 
+//static : 인스턴스를 만들지 않아도 사용할 수 있게 (?) class 이름.메소드 
+	
+	
 public class MemberExe { // 필드 생성
-	private Member[] storage; // member데이터를 담는 storage 배열(필드)
+	// 1 인스턴스 생성 > 실행 
+	// 2 정적(static) 필드, 정적(static) 메소드 선언 > 실행 
+	
+	private Member[] storage; // member데이터를 담는 storage 배열(필드) < 이게 없더라도 static... 
 
 	public MemberExe() {// 생성자
 		storage = new Member[10]; // 10명의 데이터를 담아둠

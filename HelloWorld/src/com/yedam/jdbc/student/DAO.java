@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class DAO {
 	// 쿼리실행 위해 필드 선언
 	Connection conn = null;
-	PreparedStatement psmt;
+	PreparedStatement psmt; // ? 에 데이터를 전달해 준다
 	ResultSet rs;
 	//연결 
 	

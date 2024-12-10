@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
-  <display-name>BoardWeb</display-name>
-  
-  <!-- servlet, url 매칭 -->
-  <servlet>
-  	<servlet-name>second</servlet-name>
-  	<servlet-class>com.yedam.SecondServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>second</servlet-name>
-  	<url-pattern>/second</url-pattern>
-  </servlet-mapping>
-  <!-- 제일먼저 실행되는 페이지(tomcat) -->
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file> 
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="https://jakarta.ee/xml/ns/jakartaee"
+	xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+	id="WebApp_ID" version="5.0">
+	<display-name>BoardWeb</display-name>
+
+	<!-- servlet, url 매칭 -->
+	<servlet>
+		<servlet-name>second</servlet-name>
+		<servlet-class>com.yedam.SecondServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>second</servlet-name>
+		<url-pattern>/second</url-pattern>
+	</servlet-mapping>
+
+	<!-- .do 입력시 FrontControl을 실행하도록 등록함 : url, 실행서블릿 관리 -->
+	<servlet>
+		<servlet-name>front</servlet-name>
+		<servlet-class>com.yedam.FrontControl</servlet-class>
+	</servlet>
+	<servlet-mapping> <!-- url -->
+		<servlet-name>front</servlet-name>
+		<url-pattern>*.do</url-pattern> <!-- .do 를 실행하겠다 -->
+	</servlet-mapping>
+
+	<!-- 제일먼저 실행되는 페이지(tomcat) -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>

@@ -8,6 +8,9 @@ import com.yedam.common.Control;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardFormControl;
 import com.yedam.control.BoardListControl;
+import com.yedam.control.LoginControl;
+import com.yedam.control.LoginFormControl;
+import com.yedam.control.LogoutControl;
 
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -19,7 +22,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * url pattern에서 ??.do => FrontControl을 실행 (.do요청이 들어오면 FrontControl)
  * 
  */
-
+//서블릿
 public class FrontControl extends HttpServlet{
 	
 	Map<String, Control> map; //com.yedam.common의 interface
@@ -34,9 +37,14 @@ public class FrontControl extends HttpServlet{
 		//게시글 등록화면
 		map.put("/boardForm.do", new BoardFormControl());
 		map.put("/board.do", new BoardControl());
-		//
+		//게시글 수정화면
 		map.put("/modifyForm.do", new ModifyFormControl());
 		map.put("/modifyBoard.do", new ModifyBoardControl());
+		//로그인 화면
+		map.put("/loginForm.do", new LoginFormControl());
+		map.put("/login.do", new LoginControl());
+		// 로그아웃
+		map.put("/logout.do", new LogoutControl());
 	}
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

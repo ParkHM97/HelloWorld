@@ -7,12 +7,17 @@ import com.yedam.common.Control;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
-public class BoardFormControl implements Control { // 등록하는 화면만 열어준다 
+public class LogoutControl implements Control {
+
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//등록하면 호출
-		req.getRequestDispatcher("html/boardForm.jsp").forward(req, resp);
-	
+		// TODO Auto-generated method stub
+		HttpSession session = req.getSession();
+		session.invalidate();
+		
+		resp.sendRedirect("loginForm.do");
 	}
+
 }

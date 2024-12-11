@@ -2,12 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:include page="../includes/header.jsp"></jsp:include>
-<h3>글상세(board.jsp)</h3>
+<h3>글수정화면(modifyform.jsp)</h3>
 <%
 BoardVO bvo = (BoardVO) request.getAttribute("board");
 %>
 <form action="modifyForm.do">
-	<input type="hidden" name="board_no" value="<%=bvo.getBoardNo()%>">
+<input type="hidden" name="board_no" value="<%=bvo.getBoardNo()%>"> 
 	<table class="table">
 		<tr>
 			<th>글번호</th>
@@ -17,11 +17,12 @@ BoardVO bvo = (BoardVO) request.getAttribute("board");
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td colspan="3"><%=bvo.getTitle()%></td>
+			<td colspan="3"><input type="text" name="title" value="<%=bvo.getTitle()%>"></td>
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td colspan="3"><textarea rows="5" readonly class="form-control"><%=bvo.getContent()%></textarea>
+			<td colspan="3">
+				<textarea rows="5" class="form-control" name="content"><%=bvo.getContent()%></textarea>
 			</td>
 		</tr>
 		<tr>
@@ -31,23 +32,8 @@ BoardVO bvo = (BoardVO) request.getAttribute("board");
 			<td><%=bvo.getViewCnt()%>
 		</tr>
 		<tr>
-			<%
-			String logId = (String) session.getAttribute("logId");
-			if (logId.equals(bvo.getWriter())) {
-			%>
-
 			<td colspan="4" align="center"><input type="submit"
-				class="btn btn-warning" value="수정화면"></td>
-			<%
-			} else {
-			%>
-
-			<td colspan="4" align="center"><input type="submit"
-				class="btn btn-warning" value="수정화면" disabled></td>
-			<%
-			}
-			%>
-		
+				class="btn btn-warning" value="저장"></td>
 	</table>
 </form>
 <jsp:include page="../includes/footer.jsp"></jsp:include>

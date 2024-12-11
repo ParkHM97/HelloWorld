@@ -8,11 +8,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class BoardFormControl implements Control { // 등록하는 화면만 열어준다 
+public class LoginFormControl implements Control {
+
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//등록하면 호출
-		req.getRequestDispatcher("html/boardForm.jsp").forward(req, resp);
-	
+		// TODO Auto-generated method stub
+		req.getRequestDispatcher("html/loginForm.jsp").forward(req, resp);
 	}
+
 }

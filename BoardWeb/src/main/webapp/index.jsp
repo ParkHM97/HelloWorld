@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:forward page="boardList.do"></jsp:forward>
  <!-- 자바 영역 -->
  <% 
   String msg = "Hello";

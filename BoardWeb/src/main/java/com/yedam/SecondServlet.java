@@ -4,19 +4,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.yedam.jdbc.BoardDAO;
 import com.yedam.vo.BoardVO;
-
-import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-// 1. HttpServley 상속
-// 2. 생성자 정의
-// 3. init 메소드 실행
-// 4. service 메소드 정의
 
 @WebServlet("/second2") // 또는 web.xml에 추가
 public class SecondServlet extends HttpServlet {

@@ -5,9 +5,17 @@
 <h3>글수정화면(modifyform.jsp)</h3>
 <%
 BoardVO bvo = (BoardVO) request.getAttribute("board");
+// 파라미터 추가 20241212
+String sc = (String) request.getAttribute("searchCondition");
+String kw = (String) request.getAttribute("keyword");
+String pg = (String) request.getAttribute("page");
 %>
-<form action="modifyForm.do">
+<form action="modifyBoard.do">
 <input type="hidden" name="board_no" value="<%=bvo.getBoardNo()%>"> 
+<input type="hidden" name="searchCondition" value="<%=sc%>">
+<input type="hidden" name="keyword" value="<%=kw%>">
+<input type="hidden" name="page" value="<%=pg%>">
+
 	<table class="table">
 		<tr>
 			<th>글번호</th>
@@ -32,8 +40,7 @@ BoardVO bvo = (BoardVO) request.getAttribute("board");
 			<td><%=bvo.getViewCnt()%>
 		</tr>
 		<tr>
-			<td colspan="4" align="center"><input type="submit"
-				class="btn btn-warning" value="저장"></td>
+			<td colspan="4" align="center"><input type="submit" class="btn btn-warning" value="저장"></td>
 	</table>
 </form>
 <jsp:include page="../includes/footer.jsp"></jsp:include>

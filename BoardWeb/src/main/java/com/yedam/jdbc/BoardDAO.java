@@ -72,7 +72,9 @@ public class BoardDAO extends DAO {
 				System.out.println(sql);
 				
 				rs = psmt.executeQuery();
-			
+			if(rs.next()) {
+				return rs.getInt(1); // 아래 쪽수에 숫자 나오게 ...
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -86,10 +88,9 @@ public class BoardDAO extends DAO {
 	public boolean updateBoard(BoardVO board) { // 받아야 할 값이 많기 때문에 BoardVO, insert와 유사
 		getConn();
 		String sql = "UPDATE tb1_board " //
-				+ "   SET title = ?, " //
-				+ "       content = ? " //
-				+ " WHERE board_no = ? "; //
-
+				   + "   SET title = ?, " //
+				   + "       content = ? " //
+				   + " WHERE board_no = ? "; //
 		try {
 			psmt = conn.prepareStatement(sql);
 			// ?에 들어갈 값
@@ -165,7 +166,7 @@ public class BoardDAO extends DAO {
 		return false; // firstServlet에서 호출
 	}
 
-	// 목록
+	// 목록 (parameter 매개변수)
 	public List<BoardVO> boardList(SearchDTO search) { // ? 에 들어갈 값
 		getConn();
 		String sql = "SELECT b.* " //

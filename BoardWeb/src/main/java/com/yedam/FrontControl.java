@@ -17,6 +17,8 @@ import com.yedam.control.BoardListControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginFormControl;
 import com.yedam.control.LogoutControl;
+import com.yedam.control.RemoveReplyControl;
+import com.yedam.control.addReplyControl;
 
 /*
  * url pattern에서 ??.do => FrontControl을 실행 (.do요청이 들어오면 FrontControl)
@@ -45,6 +47,11 @@ public class FrontControl extends HttpServlet{
 		map.put("/login.do", new LoginControl());
 		// 로그아웃
 		map.put("/logout.do", new LogoutControl());
+		
+		// 댓글 
+		map.put("/replyList.do", new ReplyListControl()); // 목록
+		map.put("/removeReply.do", new RemoveReplyControl());
+		map.put("/addReply.do", new addReplyControl());
 	}
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

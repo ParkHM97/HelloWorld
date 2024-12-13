@@ -129,6 +129,7 @@ public class BoardDAO extends DAO {
 				brd.setViewCnt(rs.getInt("view_cnt"));
 				brd.setCreationDate(rs.getDate("creation_date"));
 				brd.setUpdateDate(rs.getDate("update_date"));
+				brd.setImg(rs.getString("img"));
 				return brd;
 			}
 
@@ -144,8 +145,8 @@ public class BoardDAO extends DAO {
 	// BoardVO 파라미터 => 등록
 	public boolean insertBoard(BoardVO board) {
 		getConn();
-		String sql = "INSERT INTO tb1_board " + "(board_no, title, content, writer) "
-				+ "VALUES(board_seq.nextval, ?, ?, ?)";
+		String sql = "INSERT INTO tb1_board " + "(board_no, title, content, writer, img) "
+				+ "VALUES(board_seq.nextval, ?, ?, ?, ?)";
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -153,6 +154,7 @@ public class BoardDAO extends DAO {
 			psmt.setString(1, board.getTitle());
 			psmt.setString(2, board.getContent());
 			psmt.setString(3, board.getWriter());
+			psmt.setString(4, board.getImg());
 			int r = psmt.executeUpdate(); // 쿼리 실행
 			if (r > 0) {
 				return true;

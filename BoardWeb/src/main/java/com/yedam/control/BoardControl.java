@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.yedam.common.Control;
 import com.yedam.jdbc.BoardDAO;
 import com.yedam.vo.BoardVO;
@@ -33,15 +35,30 @@ public class BoardControl implements Control {
 			req.setAttribute("page", page);
 			req.getRequestDispatcher("WEB-INF/html/board.jsp").forward(req, resp);
 
-		} else if (req.getMethod().equals("POST")) {
-			String title = req.getParameter("title");
-			String content = req.getParameter("content");
-			String writer = req.getParameter("writer");
+		} else if (req.getMethod().equals("POST")) { // 게시글 등록
+			String savePath = req.getServletContext().getRealPath("images"); // webapp 아래에 images 폴더 생성 (여기에 올린 이미지 저장) 
+			int maxSize = 1024 * 1024 * 5; // 총 5MB
+			// multipart 요청
+			MultipartRequest mr = new MultipartRequest(
+					// 정보를 5가지 넘겨줘야 함 
+					req,  // 요청 정보
+					savePath, // 저장경로 
+					maxSize, // 업로드 파일의 최대 크기 
+					"utf-8", // 인코딩 방식
+					new DefaultFileRenamePolicy() // 리네임정책 (같은 파일이 들어오면 원래 파일 삭제하면 안 됨)
+					); 
+			
+			req.setCharacterEncoding("utf-8"); // 톰캣 9 / 한글 인코딩
+			String title = mr.getParameter("title");
+			String content = mr.getParameter("content");
+			String writer = mr.getParameter("writer");
+			String img = mr.getFilesystemName("img"); // 중복 이름의 파일이 들어와서 바뀐 이룸이 들어오면 > getFilesystemName (리네임 정책으로 생성된 파일이름)
 			
 			BoardVO board = new BoardVO();
 			board.setTitle(title); //초기값 없으면 에러
 			board.setContent(content);
 			board.setWriter(writer);
+			board.setImg(img);
 			
 			if(bdao.insertBoard(board)) {
 				//등록되면 목록 이동

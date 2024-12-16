@@ -14,6 +14,10 @@ import com.yedam.common.Control;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardFormControl;
 import com.yedam.control.BoardListControl;
+import com.yedam.control.ChartControl;
+import com.yedam.control.ChartDataControl;
+import com.yedam.control.FullCalendarControl;
+import com.yedam.control.GetReplyCountControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginFormControl;
 import com.yedam.control.LogoutControl;
@@ -49,9 +53,17 @@ public class FrontControl extends HttpServlet{
 		map.put("/logout.do", new LogoutControl());
 		
 		// 댓글 
-		map.put("/replyList.do", new ReplyListControl()); // 목록
-		map.put("/removeReply.do", new RemoveReplyControl());
-		map.put("/addReply.do", new addReplyControl());
+		map.put("/replyList.do", new ReplyListControl()); // 댓글목록
+		map.put("/removeReply.do", new RemoveReplyControl()); // 댓글 한 건 삭제 
+		map.put("/addReply.do", new addReplyControl()); // 댓글 등록
+		map.put("/getCount.do", new GetReplyCountControl());
+		
+		// 구글 차트 
+		map.put("/chart.do", new ChartControl());
+		map.put("/chartData.do", new ChartDataControl());
+		
+		// fullcalendar
+		map.put("/full.do", new FullCalendarControl());
 	}
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -10,7 +10,7 @@ import com.yedam.jdbc.ReplyDAO;
 public class AppTest {
 	public static void main(String[] args) {
 		ReplyDAO rdao = new ReplyDAO();
-		List<Map<String, Object>> result = rdao.chartData();
+		List<Map<String, Object>> result = rdao.calendarData();
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(result);

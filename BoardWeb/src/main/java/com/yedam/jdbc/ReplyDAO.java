@@ -39,9 +39,18 @@ public class ReplyDAO extends DAO {
 	public List<Map<String, Object>> calendarData(){
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		getConn();
-		
+		String sql = "SELECT title, start_date as start, end_date as end FROM tb1_events ";
 		try {
-			psmt = conn.prepareStatement("SELECT title, start_date as start, end_date as end FROM tb1_events ");
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			
+			while (rs.next()) {
+				Map<String, Object> map = new HashMap<>();
+				map.put("title", rs.getString("title"));
+				map.put("start", rs.getString("start"));
+				map.put("end", rs.getString("end"));
+				list.add(map);
+			}
 		} catch (SQLException e) {
 			
 		} finally {

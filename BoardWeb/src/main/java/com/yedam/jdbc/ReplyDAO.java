@@ -35,6 +35,58 @@ public class ReplyDAO extends DAO {
 					  + "   FROM tb1_reply "//
 					  + "  GROUP BY board_no ";//
 	
+	String eventQuery = " INSERT INTO tb1_events (title, "
+			          + "                         start_date, "
+			          + "                         end_date)   "
+			          + " VALUES (?, ?, ?)";
+	
+	String removeQuery = "DELETE FROM tb1_events "
+			           + " WHERE title = ? "
+			           + "   AND start_date = ? "
+			           + "   AND end_date = ? ";
+	 
+	// 일정 삭제하는 기능
+	public boolean removeData(Map<String, String> map) {
+		getConn();
+		try {
+			psmt = conn.prepareStatement(removeQuery);
+			psmt.setString(1, (String) map.get("title"));
+			psmt.setString(2, (String) map.get("start"));
+			psmt.setString(3, (String) map.get("end"));
+			int r = psmt.executeUpdate();
+			if (r > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		} 
+		return false;
+	}
+	
+	
+	// 일정 등록하는 기능
+	public boolean insertEvent(Map<String, String> map) {
+		getConn();
+		try {
+			psmt = conn.prepareStatement(eventQuery);
+			psmt.setString(1, (String) map.get("title"));
+			psmt.setString(2, (String) map.get("start"));
+			psmt.setString(3, (String) map.get("end"));
+			int r = psmt.executeUpdate(); // 처리된 건수 반환
+			if(r > 0) {
+				return true; // 정상처리 
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		} 
+		return false;
+	}
+	
+	
 	// fullCalendar 데이터
 	public List<Map<String, Object>> calendarData(){
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
@@ -52,7 +104,7 @@ public class ReplyDAO extends DAO {
 				list.add(map);
 			}
 		} catch (SQLException e) {
-			
+			e.printStackTrace();
 		} finally {
 			disConnect();
 		}

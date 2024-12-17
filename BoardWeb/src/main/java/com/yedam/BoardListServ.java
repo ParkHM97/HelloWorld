@@ -20,7 +20,7 @@ public class BoardListServ extends HttpServlet {
 		// 1. 목록 가져오는 기능
 		BoardDAO bdao = new BoardDAO();
 		//요청 재지정(BoardList를 JSP에 전달하고 전달값을 HTML 에 그려줌)
-		List<BoardVO> boardList = bdao.boardList();
+		List<BoardVO> boardList = bdao.boardList(null);
 		//요청 객체에 boardList의 정보를 담아서 JSP 페이지로 전달
 		req.setAttribute("list", boardList);
 		
